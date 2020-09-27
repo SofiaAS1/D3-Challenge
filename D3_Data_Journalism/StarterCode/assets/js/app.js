@@ -219,7 +219,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
 
 
 
-// Tutor Work 
+// Attempt with Tutor... 
 
 // var mainDiv = d3.select('#scatter');
 // var width = parseInt(mainDiv.style('width'));
@@ -264,7 +264,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
 //     .text('Lacks Healthcare(%)')
 //     .attr('transform', `translate(${(margin + pad)}, ${(height + labelArea)/2 - labelArea})rotate(-90)`);
 
-// First Attempt
+// First Attempt by myself
 
 // // Chart Params
 // var svgWidth = 960;
