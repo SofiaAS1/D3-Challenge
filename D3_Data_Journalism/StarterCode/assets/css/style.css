@@ -68,7 +68,7 @@ body {
 .axis-text {
   font-family: sans-serif;
   font-weight: bold;
-  fill: #551aaf;
+  /* fill: #551aaf; */
   text-anchor: middle;
 }
 

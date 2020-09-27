@@ -134,7 +134,9 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.obesity))
     .attr("r", 20)
-    .attr("fill", "blue")
+    .attr("fill", "lightblue")
+    .attr("stroke", "teal")
+    .attr("stroke-width", 4)
     .attr("opacity", ".5");
 
   // Create group for two x-axis labels
