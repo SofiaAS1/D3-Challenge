@@ -72,9 +72,8 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   else if (chosenXAxis === "Age") {
     label = "Age (Median)";
   }
-  else {
+  else if (chosenXAxis=== "income") {
       label = "Household Income (Median)"
-    
   }
 
   var toolTip = d3.tip()
@@ -164,10 +163,10 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .classed("inactive", true)
     .text("Age (Median)");
 
-    var hiLabel = labelsGroup.append("text")
+    var incomeLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 60)
-    .attr("value", "hi") // value to grab for event listener
+    .attr("value", "income") // value to grab for event listener
     .classed("inactive", true)
     .text("Household Income (Median)");
 
@@ -216,7 +215,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
           ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          hiLabel
+          incomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -227,7 +226,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
           ageLabel
             .classed("active", true)
             .classed("inactive", false);
-          hiLabel
+          incomeLabel
             .classed("active", false)
             .classed("inactive", true);
         }
@@ -238,7 +237,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
           ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          hiLabel
+          incomeLabel
             .classed("active", true)
             .classed("inactive", false);
         }
