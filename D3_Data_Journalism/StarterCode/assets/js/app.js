@@ -27,11 +27,11 @@ var chartGroup = svg.append("g")
 var chosenXAxis = "poverty";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(hairData, chosenXAxis) {
+function xScale(data, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(hairData, d => d[chosenXAxis]) * 0.8,
-      d3.max(hairData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(data, d => d[chosenXAxis]) * 0.8,
+      d3.max(data, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -69,8 +69,12 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   if (chosenXAxis === "poverty") {
     label = "In Poverty (%)";
   }
-  else {
+  else if (chosenXAxis === "Age") {
     label = "Age (Median)";
+  }
+  else {
+      label = "Household Income (Median)"
+    
   }
 
   var toolTip = d3.tip()
@@ -102,6 +106,9 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     data.poverty = +data.poverty;
     data.age = +data.age;
     data.obesity = +data.obesity;
+    data.income = +data.income;
+    data.smokes = +data.smokes
+    data.healthcare = +data.healthcare
   });
 
   // xLinearScale function above csv import
@@ -157,6 +164,13 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .classed("inactive", true)
     .text("Age (Median)");
 
+    var hiLabel = labelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 60)
+    .attr("value", "hi") // value to grab for event listener
+    .classed("inactive", true)
+    .text("Household Income (Median)");
+
   // append y axis
   chartGroup.append("text")
     .attr("transform", "rotate(-90)")
@@ -196,18 +210,35 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
 
         // changes classes to change bold text
         if (chosenXAxis === "poverty") {
-          ageLabel
+          povertyLabel
             .classed("active", true)
             .classed("inactive", false);
-          povertyLabel
+          ageLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          hiLabel
             .classed("active", false)
             .classed("inactive", true);
         }
-        else {
+        else if (chosenXAxis=== "age") {
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
+          ageLabel
+            .classed("active", true)
+            .classed("inactive", false);
+          hiLabel
+            .classed("active", false)
+            .classed("inactive", true);
+        }
+        else if (chosenXAxis === "hi") {
+          povertyLabel
+            .classed("active", false)
+            .classed("inactive", true);
           ageLabel
             .classed("active", false)
             .classed("inactive", true);
-          povertyLabel
+          hiLabel
             .classed("active", true)
             .classed("inactive", false);
         }
