@@ -88,24 +88,24 @@ function updateToolTip(chosenXAxis, circlesGroup) {
   var labelx;
 
   if (chosenXAxis === "poverty") {
-    label = "In Poverty (%)";
+    labelx = "In Poverty (%)";
   }
   else if (chosenXAxis === "Age") {
-    label = "Age (Median)";
+    labelx = "Age (Median)";
   }
   else if (chosenXAxis=== "income") {
-      label = "Household Income (Median)";
+      labelx = "Household Income (Median)";
   }
 //   var labely;
 
 //   if (chosenYAxis === "healthcare") {
-//       label = "Lacks Healthcare (%)";
+//       labely = "Lacks Healthcare (%)";
 //   }
 //   else if (chosenYAxis === "Smokes") {
-//       label = "Smokes (%)";
+//       labely = "Smokes (%)";
 //   }
 //   else if (chosenYAxis === "obese") {
-//       label = "Obese (%)"
+//       labely = "Obese (%)"
 //   }
 
   var toolTip = d3.tip()
@@ -184,12 +184,12 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .attr("opacity", ".5");
 
 
-//   chartGroup.append("text")
-//     .attr('text-anchor', 'middle')
-//     .attr('alignment-baseline', 'middle')
-//     .attr('fill-opacity', 0)
-//     .attr('fill', 'white')
-//     .text(d => d.abbr)
+  circlesGroup.append("text")
+    .attr('text-anchor', 'middle')
+    .attr('alignment-baseline', 'middle')
+    .attr('fill-opacity', 0)
+    .attr('fill', 'white')
+    .text(d => d.abbr)
   
 
   // Create group for 3 x-axis labels
