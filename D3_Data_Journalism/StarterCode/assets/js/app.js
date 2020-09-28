@@ -184,13 +184,14 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .attr("opacity", ".5");
 
 
-  var states = circlesGroup.append("text")
+  var states = circlesGroup.selectAll("text")
     .data(fullData)
     .enter()
+    .append("text")
     // .attr("x", d => xLinearScale(d[chosenXAxis]))
     // .attr("y", d => yLinearScale(d.healthcare))
     .text(d => d.abbr)
-    .attr('fill-opacity', 5)
+    // .attr('fill-opacity', 5)
     .attr('fill', 'teal')
   
   
