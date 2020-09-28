@@ -82,6 +82,15 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis,chosenYAxis, newYSca
   return circlesGroup;
 }
 
+function renderText(textGroup, newXScale,chosenXAxis, newYScale, chosenYAxis) {
+  textGroup.transition()
+    .duration(1000)
+    .attr("x", d => newXScale(d[chosenXAxis]))
+    // .attr("y", d => newYScale(d[chosenYAxis]));
+
+  return textGroup;
+}
+
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
@@ -142,6 +151,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     data.healthcare = +data.healthcare
   });
 
+
   // xLinearScale function above csv import
   var xLinearScale = xScale(fullData, chosenXAxis);
 //   var yLinearScale = yScale(fullData, chosenYAxis);
@@ -150,6 +160,17 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
   var yLinearScale = d3.scaleLinear()
     .domain([0, d3.max(fullData, d => d.obesity)])
     .range([height, 0]);
+
+    var textGroup = chartGroup.selectAll("text")
+    .data(fullData)
+    .enter()
+    .append("text")
+    .attr("x", d => xLinearScale(d[chosenXAxis]))
+    .attr("y", d => yLinearScale(d.healthcare)+5.5)
+    .text(d => d.abbr)
+    .attr("text-anchor", "middle")
+    .attr('fill-opacity', 5)
+    .attr('fill', 'teal')
 
   // Create initial axis functions
   var bottomAxis = d3.axisBottom(xLinearScale);
@@ -177,24 +198,12 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", 10)
+    .attr("r", 15)
     .attr("fill", "lightblue")
     .attr("stroke", "teal")
     .attr("stroke-width", 4)
     .attr("opacity", ".5");
 
-
-  var states = circlesGroup.selectAll("text")
-    .data(fullData)
-    .enter()
-    .append("text")
-    // .attr("x", d => xLinearScale(d[chosenXAxis]))
-    // .attr("y", d => yLinearScale(d.healthcare))
-    .text(d => d.abbr)
-    // .attr('fill-opacity', 5)
-    .attr('fill', 'teal')
-  
-  
 
   // Create group for 3 x-axis labels
   var xlabelsGroup = chartGroup.append("g")
@@ -284,6 +293,8 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
 
         // updates circles with new x values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+
+        textGroup = renderText(textGroup,xLinearScale,chosenXAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
