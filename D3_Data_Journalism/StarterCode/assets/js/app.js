@@ -184,12 +184,12 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .attr("opacity", ".5");
 
 
-  chartGroup.append("text")
-    .attr('text-anchor', 'middle')
-    .attr('alignment-baseline', 'middle')
-    .attr('fill-opacity', 0)
-    .attr('fill', 'white')
-    .text(d => d.abbr)
+//   chartGroup.append("text")
+//     .attr('text-anchor', 'middle')
+//     .attr('alignment-baseline', 'middle')
+//     .attr('fill-opacity', 0)
+//     .attr('fill', 'white')
+//     .text(d => d.abbr)
   
 
   // Create group for 3 x-axis labels
