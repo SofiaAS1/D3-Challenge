@@ -1,9 +1,9 @@
-var svgWidth = 960;
+var svgWidth = 775;
 var svgHeight = 500;
 
 var margin = {
-  top: 75,
-  right: 75,
+  top: 50,
+  right: 50,
   bottom: 100,
   left: 100,
 };
@@ -177,7 +177,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.healthcare))
-    .attr("r", 20)
+    .attr("r", 10)
     .attr("fill", "lightblue")
     .attr("stroke", "teal")
     .attr("stroke-width", 4)
