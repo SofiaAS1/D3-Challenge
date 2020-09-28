@@ -110,7 +110,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -80])
     .html(function(d) {
-      return (`${d.state}<br>${label} ${d[chosenXAxis]} <br> obesity (%) ${d.obesity}<br>`);
+      return (`${d.state}<br>${label} ${d[chosenXAxis]} <br> Lacks Healthcare (%) ${d.healthcare}<br>`);
     });
 
   circlesGroup.call(toolTip);
@@ -173,7 +173,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
-    .attr("cy", d => yLinearScale(d.obesity))
+    .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", 20)
     .attr("fill", "lightblue")
     .attr("stroke", "teal")
@@ -236,7 +236,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
     .attr("x", 0 - (height / 2))
     .attr("dy", "1em")
     .classed("axis-text", true)
-    .text("Obesity (%)");
+    .text("Lacks Healthcare (%)");
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -289,7 +289,7 @@ d3.csv("assets/data/data.csv").then(function(fullData, err) {
             .classed("active", false)
             .classed("inactive", true);
         }
-        else if (chosenXAxis === "hi") {
+        else if (chosenXAxis === "income") {
           povertyLabel
             .classed("active", false)
             .classed("inactive", true);
